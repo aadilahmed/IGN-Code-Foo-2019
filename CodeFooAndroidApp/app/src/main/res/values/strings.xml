@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Code_Foo_Android_App</string>
+    <string name="article_tab_title">ARTICLES</string>
+    <string name="video_tab_title">VIDEOS</string>
+</resources>
