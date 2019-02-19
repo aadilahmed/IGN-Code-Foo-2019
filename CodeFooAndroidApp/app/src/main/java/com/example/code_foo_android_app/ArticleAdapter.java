@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.code_foo_android_app.Model.Content;
 
 import java.util.ArrayList;
@@ -36,9 +37,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
         String articleTitle = article.getMetadata().getHeadline();
         String articleDescription = article.getMetadata().getDescription();
+        String image = article.getThumbnailArrayList().get(0).getUrl();
 
         viewHolder.mArticleTitleView.setText(articleTitle);
         viewHolder.mArticleDescriptionView.setText(articleDescription);
+
+        Glide.with(context).load(image).into(viewHolder.mImageView);
     }
 
     @Override

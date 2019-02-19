@@ -12,7 +12,7 @@ public class Content{
     @SerializedName("metadata")
     private Metadata metadata;
     @SerializedName("thumbnails")
-    private ArrayList<Thumbnail> thumbnails;
+    private ArrayList<Thumbnail> thumbnailList;
     @SerializedName("tags")
     private ArrayList<String> tags;
     @SerializedName("authors")
@@ -24,7 +24,7 @@ public class Content{
         this.contentId = contentId;
         this.contentType = contentType;
         this.metadata = metadata;
-        this.thumbnails = thumbnails;
+        this.thumbnailList = thumbnails;
         this.tags = tags;
         this.authors = authors;
     }
@@ -51,5 +51,13 @@ public class Content{
 
     public void setMetadata(Metadata metadata) {
         this.metadata = metadata;
+    }
+
+    public ArrayList<Thumbnail> getThumbnailArrayList() {
+        return thumbnailList;
+    }
+
+    public void setThumbnailArrayList(ArrayList<Thumbnail> thumbnailArrayList) {
+        this.thumbnailList = thumbnailArrayList;
     }
 }
