@@ -19,4 +19,36 @@ public class Metadata {
         this.state = state;
         this.networks = networks;
     }
+
+    public String getHeadline() {
+        return this.headline;
+    }
+
+    public void setHeadline(String headline) {
+        this.headline = headline;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPublishDate() {
+        return this.publishDate;
+    }
+
+    public void setPublishDate(String publishDate) {
+        this.publishDate = publishDate;
+    }
+
+    public String getSlug() {
+        return this.slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
 }

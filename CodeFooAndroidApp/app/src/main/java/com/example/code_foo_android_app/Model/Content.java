@@ -11,16 +11,20 @@ public class Content{
     private String contentType;
     @SerializedName("metadata")
     private Metadata metadata;
+    @SerializedName("thumbnails")
+    private ArrayList<Thumbnail> thumbnails;
     @SerializedName("tags")
     private ArrayList<String> tags;
     @SerializedName("authors")
     private ArrayList<String> authors;
 
     public Content(String contentId, String contentType, Metadata metadata,
-                   ArrayList<String> tags, ArrayList<String> authors) {
+                   ArrayList<Thumbnail> thumbnails, ArrayList<String> tags,
+                   ArrayList<String> authors) {
         this.contentId = contentId;
         this.contentType = contentType;
         this.metadata = metadata;
+        this.thumbnails = thumbnails;
         this.tags = tags;
         this.authors = authors;
     }
