@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.code_foo_android_app.Model.Content;
-import com.example.code_foo_android_app.Model.ContentList;
+import com.example.code_foo_android_app.Model.Article;
+import com.example.code_foo_android_app.Model.ArticleList;
 import com.example.code_foo_android_app.Utils.ApiInterface;
 import com.example.code_foo_android_app.Utils.RetrofitClientInstance;
 
@@ -43,11 +43,11 @@ public class ArticlesFragment extends Fragment {
         retrofit = RetrofitClientInstance.getRetrofitInstance();
         ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
-        Call<ContentList> call = apiInterface.getContent();
+        Call<ArticleList> call = apiInterface.getContent();
 
-        call.enqueue(new Callback<ContentList>() {
+        call.enqueue(new Callback<ArticleList>() {
             @Override
-            public void onResponse(Call<ContentList> call, Response<ContentList> response) {
+            public void onResponse(Call<ArticleList> call, Response<ArticleList> response) {
                 if(!response.isSuccessful()){
                     Toast toast = Toast.makeText(getActivity().getApplicationContext(),
                             getResources().getString(R.string.network_error_message),
@@ -55,11 +55,18 @@ public class ArticlesFragment extends Fragment {
                     toast.show();
                 }
 
-                ArrayList<Content> contentList = response.body().getContentArrayList();
+                ArrayList<Article> content = response.body().getContentArrayList();
+                ArrayList<Article> articleList = new ArrayList<Article>();
+
+                for(Article i : content) {
+                    if(i.getContentType().equals("article")) {
+                        articleList.add(i);
+                    }
+                }
 
                 mRecyclerView = rootView.findViewById(R.id.rv_results_list);
                 mRecyclerView.setHasFixedSize(true);
-                mAdapter = new ArticleAdapter(contentList);
+                mAdapter = new ArticleAdapter(articleList);
                 mLayoutManager = new LinearLayoutManager(getContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setAdapter(mAdapter);
@@ -70,7 +77,7 @@ public class ArticlesFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<ContentList> call, Throwable t) {
+            public void onFailure(Call<ArticleList> call, Throwable t) {
                 Log.d(getResources().getString(R.string.main_activity_tag), t.getLocalizedMessage());
             }
         });

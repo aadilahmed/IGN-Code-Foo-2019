@@ -10,15 +10,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.code_foo_android_app.Model.Content;
+import com.example.code_foo_android_app.Model.Article;
 
 import java.util.ArrayList;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<Content> articles;
+    private ArrayList<Article> articles;
 
-    public ArticleAdapter(ArrayList<Content> articles) {
+    public ArticleAdapter(ArrayList<Article> articles) {
         this.articles = articles;
     }
 
@@ -33,7 +33,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        final Content article = articles.get(i);
+        final Article article = articles.get(i);
 
         String articleTitle = article.getMetadata().getHeadline();
         String articleDescription = article.getMetadata().getDescription();

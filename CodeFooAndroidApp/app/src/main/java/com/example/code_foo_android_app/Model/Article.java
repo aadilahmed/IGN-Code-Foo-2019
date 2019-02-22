@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class Content{
+public class Article {
     @SerializedName("contentId")
     private String contentId;
     @SerializedName("contentType")
@@ -18,7 +18,7 @@ public class Content{
     @SerializedName("authors")
     private ArrayList<String> authors;
 
-    public Content(String contentId, String contentType, Metadata metadata,
+    public Article(String contentId, String contentType, Metadata metadata,
                    ArrayList<Thumbnail> thumbnails, ArrayList<String> tags,
                    ArrayList<String> authors) {
         this.contentId = contentId;
