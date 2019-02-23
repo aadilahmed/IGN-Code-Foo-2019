@@ -1,6 +1,8 @@
 package com.example.code_foo_android_app;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,6 +37,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull VideoAdapter.ViewHolder viewHolder, int i) {
         final Video video = videos.get(i);
 
+        String slug = video.getVideoMetadata().getSlug();
+        String url = context.getString(R.string.base_video_url) + slug;
+
+        final Uri videoLink = Uri.parse(url);
+
         String videoTitle = video.getVideoMetadata().getTitle();
         String videoDescription = video.getVideoMetadata().getDescription();
         String image = video.getThumbnailArrayList().get(0).getUrl();
@@ -43,6 +50,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         viewHolder.mVideoDescriptionView.setText(videoDescription);
 
         Glide.with(context).load(image).into(viewHolder.mImageView);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, videoLink);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

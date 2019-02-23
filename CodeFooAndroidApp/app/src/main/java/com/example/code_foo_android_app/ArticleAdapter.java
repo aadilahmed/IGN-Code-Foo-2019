@@ -1,6 +1,8 @@
 package com.example.code_foo_android_app;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -35,6 +37,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         final Article article = articles.get(i);
 
+        String slug = article.getMetadata().getSlug();
+        String url = context.getString(R.string.base_article_url) + slug;
+
+        final Uri articleLink = Uri.parse(url);
+
         String articleTitle = article.getMetadata().getHeadline();
         String articleDescription = article.getMetadata().getDescription();
         String image = article.getThumbnailArrayList().get(0).getUrl();
@@ -43,6 +50,14 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         viewHolder.mArticleDescriptionView.setText(articleDescription);
 
         Glide.with(context).load(image).into(viewHolder.mImageView);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, articleLink);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -4,4 +4,8 @@
     <string name="video_tab_title">VIDEOS</string>
     <string name="network_error_message">Loading Failed</string>
     <string name="main_activity_tag">MainActivity</string>
+    <string name="article_link_title">Read</string>
+    <string name="video_link_title">Watch</string>
+    <string name="base_article_url">https://www.ign.com/articles/</string>
+    <string name="base_video_url">https://www.ign.com/videos/</string>
 </resources>
