@@ -63,4 +63,19 @@
         app:layout_constraintStart_toStartOf="@+id/video_description_tv"
         app:layout_constraintTop_toBottomOf="@id/video_description_tv" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comment_label"
+        app:layout_constraintTop_toBottomOf="@id/video_description_tv"
+        app:layout_constraintEnd_toEndOf="@id/video_description_tv"/>
+
+    <TextView
+        android:id="@+id/video_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/video_title"
+        app:layout_constraintStart_toStartOf="@id/video_title"
+        android:textColor="@color/colorPrimaryDark"/>
+
 </android.support.constraint.ConstraintLayout>
