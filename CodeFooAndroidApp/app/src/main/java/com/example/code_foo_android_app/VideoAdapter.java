@@ -54,9 +54,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         String videoTitle = video.getVideoMetadata().getTitle();
         String videoDescription = video.getVideoMetadata().getDescription();
         String image = video.getThumbnailArrayList().get(0).getUrl();
+        int commentCount = video.getNumComments();
 
         viewHolder.mVideoTitleView.setText(videoTitle);
         viewHolder.mVideoDescriptionView.setText(videoDescription);
+        viewHolder.mVideoCommentView.setText(String.valueOf(commentCount));
 
         Glide.with(context).load(image).into(viewHolder.mImageView);
 
@@ -78,6 +80,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         private TextView mVideoTitleView;
         private TextView mVideoDescriptionView;
         private TextView mVideoDateView;
+        private TextView mVideoCommentView;
         private ImageView mImageView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -85,6 +88,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             mVideoTitleView = itemView.findViewById(R.id.video_title);
             mVideoDescriptionView = itemView.findViewById(R.id.video_description_tv);
             mVideoDateView = itemView.findViewById(R.id.video_timestamp);
+            mVideoCommentView = itemView.findViewById(R.id.vid_comment_count);
             mImageView = itemView.findViewById(R.id.video_thumbnail);
         }
     }

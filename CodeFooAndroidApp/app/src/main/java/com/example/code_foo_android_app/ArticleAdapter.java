@@ -54,9 +54,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         String articleTitle = article.getMetadata().getHeadline();
         String articleDescription = article.getMetadata().getDescription();
         String image = article.getThumbnailArrayList().get(0).getUrl();
+        int commentCount = article.getNumComments();
 
         viewHolder.mArticleTitleView.setText(articleTitle);
         viewHolder.mArticleDescriptionView.setText(articleDescription);
+        viewHolder.mArticleCommentView.setText(String.valueOf(commentCount));
 
         Glide.with(context).load(image).into(viewHolder.mImageView);
 
@@ -81,6 +83,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         private TextView mArticleTitleView;
         private TextView mArticleDescriptionView;
         private TextView mArticleDateView;
+        private TextView mArticleCommentView;
         private ImageView mImageView;
 
         public ViewHolder(@NonNull View itemView) {
@@ -88,6 +91,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
             mArticleTitleView = itemView.findViewById(R.id.article_title);
             mArticleDescriptionView = itemView.findViewById(R.id.description_tv);
             mArticleDateView = itemView.findViewById(R.id.article_timestamp);
+            mArticleCommentView = itemView.findViewById(R.id.comment_count);
             mImageView = itemView.findViewById(R.id.article_thumbnail);
         }
     }
@@ -113,7 +117,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
                     returnValue = "YESTERDAY";
                 }
                 else {
-                    returnValue = days + " DAY AGO";
+                    returnValue = days + " DAYS AGO";
                 }
             }
             else if(hours > 0) {

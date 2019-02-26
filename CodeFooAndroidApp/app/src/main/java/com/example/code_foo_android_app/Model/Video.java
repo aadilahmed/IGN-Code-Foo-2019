@@ -16,8 +16,10 @@ public class Video {
     @SerializedName("tags")
     private ArrayList<String> tags;
 
+    private int numComments;
+
     public Video(String contentId, String contentType, VideoMetadata metadata,
-                   ArrayList<Thumbnail> thumbnails, ArrayList<String> tags) {
+                   ArrayList<Thumbnail> thumbnails, ArrayList<String> tags, int numComments) {
         this.contentId = contentId;
         this.contentType = contentType;
         this.metadata = metadata;
@@ -55,5 +57,13 @@ public class Video {
 
     public void setThumbnailArrayList(ArrayList<Thumbnail> thumbnailArrayList) {
         this.thumbnailList = thumbnailArrayList;
+    }
+
+    public int getNumComments() {
+        return this.numComments;
+    }
+
+    public void setNumComments(int numComments) {
+        this.numComments = numComments;
     }
 }

@@ -8,5 +8,5 @@
     <string name="video_link_title">Watch</string>
     <string name="base_article_url">https://www.ign.com/articles/</string>
     <string name="base_video_url">https://www.ign.com/videos/</string>
-    <string name="comment_label">Comment</string>
+    <string name="comment_label">Comment </string>
 </resources>

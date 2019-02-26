@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import com.example.code_foo_android_app.Model.Article;
 import com.example.code_foo_android_app.Model.ArticleList;
+import com.example.code_foo_android_app.Model.Comment;
+import com.example.code_foo_android_app.Model.CommentList;
 import com.example.code_foo_android_app.Utils.ApiInterface;
 import com.example.code_foo_android_app.Utils.RetrofitClientInstance;
 
@@ -41,7 +43,7 @@ public class ArticlesFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.articles_fragment, container, false);
         retrofit = RetrofitClientInstance.getRetrofitInstance();
-        ApiInterface apiInterface = retrofit.create(ApiInterface.class);
+        final ApiInterface apiInterface = retrofit.create(ApiInterface.class);
 
         Call<ArticleList> call = apiInterface.getContent();
 
@@ -56,11 +58,34 @@ public class ArticlesFragment extends Fragment {
                 }
 
                 ArrayList<Article> content = response.body().getContentArrayList();
-                ArrayList<Article> articleList = new ArrayList<Article>();
+                final ArrayList<Article> articleList = new ArrayList<Article>();
 
-                for(Article i : content) {
+                for(final Article i : content) {
                     if(i.getContentType().equals("article")) {
                         articleList.add(i);
+                        Call<CommentList> call2 = apiInterface.getComments(i.getContentId());
+
+                        call2.enqueue(new Callback<CommentList>() {
+                            @Override
+                            public void onResponse(Call<CommentList> call, Response<CommentList> response) {
+                                if(!response.isSuccessful()){
+                                    Toast toast = Toast.makeText(getActivity().getApplicationContext(),
+                                            getResources().getString(R.string.network_error_message),
+                                            Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+
+                                ArrayList<Comment> comments = response.body().getCommentArrayList();
+
+
+                                i.setNumComments(comments.get(0).getCount());
+                            }
+
+                            @Override
+                            public void onFailure(Call<CommentList> call, Throwable t) {
+                                Log.d(getResources().getString(R.string.main_activity_tag), t.getLocalizedMessage());
+                            }
+                        });
                     }
                 }
 

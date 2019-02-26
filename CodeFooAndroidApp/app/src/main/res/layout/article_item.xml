@@ -33,7 +33,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        card_view:cardCornerRadius="12dp">
+        card_view:cardCornerRadius="16dp">
 
         <ImageView
             android:id="@+id/article_thumbnail"
@@ -64,11 +64,14 @@
         app:layout_constraintTop_toBottomOf="@id/description_tv" />
 
     <TextView
+        android:id="@+id/comment_label_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:text="@string/comment_label"
-        app:layout_constraintTop_toBottomOf="@id/description_tv"
-        app:layout_constraintEnd_toEndOf="@id/description_tv"/>
+        app:layout_constraintEnd_toEndOf="@+id/description_tv"
+        app:layout_constraintTop_toBottomOf="@id/description_tv" />
 
     <TextView
         android:id="@+id/article_timestamp"
@@ -77,5 +80,17 @@
         app:layout_constraintBottom_toTopOf="@id/article_title"
         app:layout_constraintStart_toStartOf="@id/article_title"
         android:textColor="@color/colorPrimaryDark"/>
+
+    <TextView
+        android:id="@+id/comment_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/description_tv"
+        app:layout_constraintStart_toEndOf="@+id/comment_label_tv"
+        app:layout_constraintTop_toBottomOf="@id/description_tv" />
 
 </android.support.constraint.ConstraintLayout>

@@ -18,15 +18,18 @@ public class Article {
     @SerializedName("authors")
     private ArrayList<String> authors;
 
+    private int numComments;
+
     public Article(String contentId, String contentType, Metadata metadata,
                    ArrayList<Thumbnail> thumbnails, ArrayList<String> tags,
-                   ArrayList<String> authors) {
+                   ArrayList<String> authors, int numComments) {
         this.contentId = contentId;
         this.contentType = contentType;
         this.metadata = metadata;
         this.thumbnailList = thumbnails;
         this.tags = tags;
         this.authors = authors;
+        this.numComments = numComments;
     }
 
     public String getContentId() {
@@ -59,5 +62,13 @@ public class Article {
 
     public void setThumbnailArrayList(ArrayList<Thumbnail> thumbnailArrayList) {
         this.thumbnailList = thumbnailArrayList;
+    }
+
+    public int getNumComments() {
+        return this.numComments;
+    }
+
+    public void setNumComments(int numComments) {
+        this.numComments = numComments;
     }
 }
