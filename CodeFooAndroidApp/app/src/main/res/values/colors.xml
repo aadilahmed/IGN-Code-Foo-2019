@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#BF1313</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#BF1313</color>
     <color name="not_selected">#C2C3CD</color>
     <color name="article_title_color">#212121</color>
 </resources>
+<!--<color name="colorPrimaryDark">#BF1313</color>-->
