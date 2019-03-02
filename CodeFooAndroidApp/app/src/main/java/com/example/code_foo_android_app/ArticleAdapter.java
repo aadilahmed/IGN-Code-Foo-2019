@@ -38,6 +38,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        if(i == 0) {
+
+        }
         final Article article = articles.get(i);
 
         String slug = article.getMetadata().getSlug();
