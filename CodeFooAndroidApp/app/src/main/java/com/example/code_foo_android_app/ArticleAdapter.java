@@ -31,47 +31,53 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
-        View articleItem = LayoutInflater.from(context)
-                .inflate(R.layout.article_item, viewGroup, false);
-        return new ArticleAdapter.ViewHolder(articleItem);
+        if (i == 0) {
+            View swipeItem = LayoutInflater.from(context)
+                    .inflate(R.layout.swipe_item, viewGroup, false);
+           return new ArticleAdapter.ViewHolder(swipeItem);
+        } else {
+            View articleItem = LayoutInflater.from(context)
+                    .inflate(R.layout.article_item, viewGroup, false);
+            return new ArticleAdapter.ViewHolder(articleItem);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        if(i == 0) {
+        if(getItemViewType(i) != 0) {
+            i--;
+            final Article article = articles.get(i);
 
+            String slug = article.getMetadata().getSlug();
+            String url = context.getString(R.string.base_article_url) + slug;
+
+            final Uri articleLink = Uri.parse(url);
+
+            String dateString = article.getMetadata().getPublishDate();
+
+            String timePassed = calcTimestamp(dateString, viewHolder);
+
+            viewHolder.mArticleDateView.setText(timePassed);
+
+            String articleTitle = article.getMetadata().getHeadline();
+            String articleDescription = article.getMetadata().getDescription();
+            String image = article.getThumbnailArrayList().get(0).getUrl();
+            int commentCount = article.getNumComments();
+
+            viewHolder.mArticleTitleView.setText(articleTitle);
+            viewHolder.mArticleDescriptionView.setText(articleDescription);
+            viewHolder.mArticleCommentView.setText(String.valueOf(commentCount));
+
+            Glide.with(context).load(image).into(viewHolder.mImageView);
+
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, articleLink);
+                    context.startActivity(intent);
+                }
+            });
         }
-        final Article article = articles.get(i);
-
-        String slug = article.getMetadata().getSlug();
-        String url = context.getString(R.string.base_article_url) + slug;
-
-        final Uri articleLink = Uri.parse(url);
-
-        String dateString = article.getMetadata().getPublishDate();
-
-        String timePassed = calcTimestamp(dateString, viewHolder);
-
-        viewHolder.mArticleDateView.setText(timePassed);
-
-        String articleTitle = article.getMetadata().getHeadline();
-        String articleDescription = article.getMetadata().getDescription();
-        String image = article.getThumbnailArrayList().get(0).getUrl();
-        int commentCount = article.getNumComments();
-
-        viewHolder.mArticleTitleView.setText(articleTitle);
-        viewHolder.mArticleDescriptionView.setText(articleDescription);
-        viewHolder.mArticleCommentView.setText(String.valueOf(commentCount));
-
-        Glide.with(context).load(image).into(viewHolder.mImageView);
-
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, articleLink);
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -79,7 +85,15 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         if(articles == null) {
             return 0;
         }
-        return articles.size();
+        return articles.size() + 1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return 0;
+        }
+        else return 1;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
