@@ -5,4 +5,6 @@
     <color name="colorAccent">#BF1313</color>
     <color name="not_selected">#C2C3CD</color>
     <color name="article_title_color">#212121</color>
+    <color name="comment_count_color">#5197CC</color>
+    <color name="description_color">#999999</color>
 </resources>

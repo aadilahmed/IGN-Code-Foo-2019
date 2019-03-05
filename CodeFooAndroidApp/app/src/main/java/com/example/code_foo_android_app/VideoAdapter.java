@@ -31,49 +31,69 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     @Override
     public VideoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
-        View videoItem = LayoutInflater.from(context)
-                .inflate(R.layout.video_item, viewGroup, false);
-        return new VideoAdapter.ViewHolder(videoItem);
+        if(i == 0) {
+            View swipeItem = LayoutInflater.from(context)
+                    .inflate(R.layout.swipe_item, viewGroup, false);
+            return new VideoAdapter.ViewHolder(swipeItem);
+        } else {
+            View videoItem = LayoutInflater.from(context)
+                    .inflate(R.layout.video_item, viewGroup, false);
+            return new VideoAdapter.ViewHolder(videoItem);
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull VideoAdapter.ViewHolder viewHolder, int i) {
-        final Video video = videos.get(i);
+        if(getItemViewType(i) != 0) {
+            i--;
+            final Video video = videos.get(i);
 
-        String slug = video.getVideoMetadata().getSlug();
-        String url = context.getString(R.string.base_video_url) + slug;
+            String slug = video.getVideoMetadata().getSlug();
+            String url = context.getString(R.string.base_video_url) + slug;
 
-        final Uri videoLink = Uri.parse(url);
+            final Uri videoLink = Uri.parse(url);
 
-        String dateString = video.getVideoMetadata().getPublishDate();
+            String dateString = video.getVideoMetadata().getPublishDate();
 
-        String timePassed = calcTimestamp(dateString, viewHolder);
+            String timePassed = calcTimestamp(dateString, viewHolder);
 
-        viewHolder.mVideoDateView.setText(timePassed);
+            viewHolder.mVideoDateView.setText(timePassed);
 
-        String videoTitle = video.getVideoMetadata().getTitle();
-        String videoDescription = video.getVideoMetadata().getDescription();
-        String image = video.getThumbnailArrayList().get(0).getUrl();
-        int commentCount = video.getNumComments();
+            String videoTitle = video.getVideoMetadata().getTitle();
+            String videoDescription = video.getVideoMetadata().getDescription();
+            String image = video.getThumbnailArrayList().get(0).getUrl();
+            int commentCount = video.getNumComments();
 
-        viewHolder.mVideoTitleView.setText(videoTitle);
-        viewHolder.mVideoDescriptionView.setText(videoDescription);
-        viewHolder.mVideoCommentView.setText(String.valueOf(commentCount));
+            viewHolder.mVideoTitleView.setText(videoTitle);
+            viewHolder.mVideoDescriptionView.setText(videoDescription);
+            viewHolder.mVideoCommentView.setText(String.valueOf(commentCount));
 
-        Glide.with(context).load(image).into(viewHolder.mImageView);
+            Glide.with(context).load(image).into(viewHolder.mImageView);
 
-        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, videoLink);
-                context.startActivity(intent);
-            }
-        });
+            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, videoLink);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
     public int getItemCount() {
-        return videos.size();
+        if(videos == null) {
+            return 0;
+        }
+        return videos.size() + 1;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return 0;
+        }
+        else return 1;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

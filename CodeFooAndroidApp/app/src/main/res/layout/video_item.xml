@@ -9,26 +9,20 @@
         android:id="@+id/video_title"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         app:layout_constraintBottom_toTopOf="@id/video_thumbnail_frame"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="32sp"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
         android:textColor="@color/article_title_color"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:fontFamily="sans-serif-black"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/video_thumbnail_frame"
         android:layout_width="350dp"
         android:layout_height="200dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_margin="8dp"
         app:layout_constraintBottom_toTopOf="@id/video_description_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,19 +41,22 @@
         android:id="@+id/video_description_tv"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/video_thumbnail_frame" />
+        app:layout_constraintTop_toBottomOf="@id/video_thumbnail_frame"
+        android:textColor="@color/description_color"/>
 
     <TextView
         android:id="@+id/video_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/video_link_title"
+        android:textColor="@color/not_selected"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/video_description_tv"
         app:layout_constraintTop_toBottomOf="@id/video_description_tv" />
 
@@ -70,6 +67,9 @@
         android:text="@string/comment_label"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/not_selected"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/video_description_tv"
         app:layout_constraintEnd_toEndOf="@id/video_description_tv"/>
 
@@ -79,7 +79,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/video_title"
         app:layout_constraintStart_toStartOf="@id/video_title"
-        android:textColor="@color/colorPrimaryDark"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/vid_comment_count"
@@ -89,6 +92,9 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/comment_count_color"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/video_description_tv"
         app:layout_constraintStart_toEndOf="@+id/vid_comment_label"
         app:layout_constraintTop_toBottomOf="@id/video_description_tv" />
