@@ -1,4 +1,4 @@
-package com.example.code_foo_android_app;
+package com.example.code_foo_android_app.UI;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.code_foo_android_app.Model.Article;
+import com.example.code_foo_android_app.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

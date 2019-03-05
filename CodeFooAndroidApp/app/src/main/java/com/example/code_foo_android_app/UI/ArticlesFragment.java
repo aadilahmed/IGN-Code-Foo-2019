@@ -1,4 +1,4 @@
-package com.example.code_foo_android_app;
+package com.example.code_foo_android_app.UI;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +17,7 @@ import com.example.code_foo_android_app.Model.Article;
 import com.example.code_foo_android_app.Model.ArticleList;
 import com.example.code_foo_android_app.Model.Comment;
 import com.example.code_foo_android_app.Model.CommentList;
+import com.example.code_foo_android_app.R;
 import com.example.code_foo_android_app.Utils.ApiInterface;
 import com.example.code_foo_android_app.Utils.RetrofitClientInstance;
 

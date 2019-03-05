@@ -1,4 +1,4 @@
-package com.example.code_foo_android_app;
+package com.example.code_foo_android_app.UI;
 
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,9 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TableLayout;
+
+import com.example.code_foo_android_app.R;
 
 public class MainActivity extends FragmentActivity {
     private ViewPager mPager;
