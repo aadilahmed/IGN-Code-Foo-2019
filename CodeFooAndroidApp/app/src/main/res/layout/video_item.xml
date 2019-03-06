@@ -29,11 +29,24 @@
         app:layout_constraintTop_toTopOf="parent"
         card_view:cardCornerRadius="12dp">
 
-        <ImageView
-            android:id="@+id/video_thumbnail"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/video_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:id="@+id/play_buttom"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/play_button"
+                android:layout_centerInParent="true"
+                />
+        </RelativeLayout>
 
     </android.support.v7.widget.CardView>
 
