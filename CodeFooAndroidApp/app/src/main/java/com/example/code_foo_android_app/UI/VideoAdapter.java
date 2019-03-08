@@ -14,11 +14,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.code_foo_android_app.Model.Video;
 import com.example.code_foo_android_app.R;
+import com.example.code_foo_android_app.Utils.TimestampCalcUtil;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
     private Context context;
@@ -44,7 +42,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull VideoAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         if(getItemViewType(i) != 0) {
             i--;
             final Video video = videos.get(i);
@@ -56,7 +54,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
 
             String dateString = video.getVideoMetadata().getPublishDate();
 
-            String timePassed = calcTimestamp(dateString, viewHolder);
+            String timePassed = TimestampCalcUtil.calcTimestamp(dateString, viewHolder);
 
             viewHolder.mVideoDateView.setText(timePassed);
 
@@ -112,42 +110,5 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             mVideoCommentView = itemView.findViewById(R.id.vid_comment_count);
             mImageView = itemView.findViewById(R.id.video_thumbnail);
         }
-    }
-
-    private String calcTimestamp(String dateString, VideoAdapter.ViewHolder viewHolder){
-        String returnValue = "";
-
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            Date date = dateFormat.parse(dateString);
-            long dateTime = date.getTime();
-            Date currDate = new Date();
-            long dateTime2 = currDate.getTime();
-
-            long diff = dateTime2 - dateTime;
-            long seconds = diff / 1000;
-            long minutes = seconds / 60;
-            long hours = minutes / 60;
-            long days = hours / 24;
-
-            if(days > 0) {
-                if(days == 1) {
-                    returnValue = "YESTERDAY";
-                }
-                else {
-                    returnValue = days + " DAY AGO";
-                }
-            }
-            else if(hours > 0) {
-                returnValue = hours + " HR AGO";
-            }
-            else if(minutes > 0) {
-                returnValue = minutes + " MIN AGO";
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return returnValue;
     }
 }

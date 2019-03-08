@@ -14,11 +14,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.code_foo_android_app.Model.Article;
 import com.example.code_foo_android_app.R;
+import com.example.code_foo_android_app.Utils.TimestampCalcUtil;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHolder> {
     private Context context;
@@ -56,7 +54,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
 
             String dateString = article.getMetadata().getPublishDate();
 
-            String timePassed = calcTimestamp(dateString, viewHolder);
+            String timePassed = TimestampCalcUtil.calcTimestamp(dateString, viewHolder);
 
             viewHolder.mArticleDateView.setText(timePassed);
 
@@ -112,42 +110,5 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
             mArticleCommentView = itemView.findViewById(R.id.comment_count);
             mImageView = itemView.findViewById(R.id.article_thumbnail);
         }
-    }
-
-    private String calcTimestamp(String dateString, ViewHolder viewHolder){
-        String returnValue = "";
-
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-            Date date = dateFormat.parse(dateString);
-            long dateTime = date.getTime();
-            Date currDate = new Date();
-            long dateTime2 = currDate.getTime();
-
-            long diff = dateTime2 - dateTime;
-            long seconds = diff / 1000;
-            long minutes = seconds / 60;
-            long hours = minutes / 60;
-            long days = hours / 24;
-
-            if(days > 0) {
-                if(days == 1) {
-                    returnValue = "YESTERDAY";
-                }
-                else {
-                    returnValue = days + " DAYS AGO";
-                }
-            }
-            else if(hours > 0) {
-                returnValue = hours + " HR AGO";
-            }
-            else if(minutes > 0) {
-                returnValue = minutes + " MIN AGO";
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return returnValue;
     }
 }
