@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -66,6 +67,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
             viewHolder.mArticleTitleView.setText(articleTitle);
             viewHolder.mArticleDescriptionView.setText(articleDescription);
             viewHolder.mArticleCommentView.setText(String.valueOf(commentCount));
+            viewHolder.mCardView.setRadius(context.getResources()
+                    .getInteger(R.integer.cardCornerRadius));
 
             Glide.with(context).load(image).into(viewHolder.mImageView);
 
@@ -101,6 +104,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
         private TextView mArticleDateView;
         private TextView mArticleCommentView;
         private ImageView mImageView;
+        private CardView mCardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -109,6 +113,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ViewHold
             mArticleDateView = itemView.findViewById(R.id.article_timestamp);
             mArticleCommentView = itemView.findViewById(R.id.comment_count);
             mImageView = itemView.findViewById(R.id.article_thumbnail);
+            mCardView = itemView.findViewById(R.id.thumbnail_frame);
         }
     }
 }
