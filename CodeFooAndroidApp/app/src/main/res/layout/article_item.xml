@@ -2,8 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/article_title"
@@ -50,11 +49,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:text="@string/article_link_title"
         android:textColor="@color/not_selected"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/description_tv"
         app:layout_constraintTop_toBottomOf="@id/description_tv" />
 
@@ -97,4 +94,13 @@
         app:layout_constraintStart_toStartOf="@id/article_title"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_margin="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/description_tv"
+        app:layout_constraintStart_toStartOf="@+id/description_tv"
+        app:layout_constraintTop_toBottomOf="@id/article_link"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/divider_color"/>
 </android.support.constraint.ConstraintLayout>

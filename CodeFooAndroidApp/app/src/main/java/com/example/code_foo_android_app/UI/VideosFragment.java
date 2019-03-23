@@ -33,7 +33,6 @@ public class VideosFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.ItemDecoration mDividerItemDecoration;
     private Retrofit retrofit;
 
     public VideosFragment() {
@@ -97,10 +96,6 @@ public class VideosFragment extends Fragment {
                 mLayoutManager = new LinearLayoutManager(getContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setAdapter(mAdapter);
-
-                mDividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
-                        DividerItemDecoration.VERTICAL);
-                mRecyclerView.addItemDecoration(mDividerItemDecoration);
             }
 
             @Override
