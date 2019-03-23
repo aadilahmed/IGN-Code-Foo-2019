@@ -49,11 +49,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:text="@string/article_link_title"
         android:textColor="@color/not_selected"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/description_tv"
+        app:layout_constraintStart_toEndOf="@id/read_icon"
         app:layout_constraintTop_toBottomOf="@id/description_tv" />
+
+    <ImageView
+        android:id="@+id/read_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/outline_subject_24"
+        android:tint="@color/not_selected"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@id/article_link"
+        app:layout_constraintStart_toStartOf="@id/description_tv"
+        app:layout_constraintTop_toBottomOf="@+id/description_tv" />
 
     <TextView
         android:id="@+id/comment_label_tv"
@@ -67,6 +84,19 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/description_tv"
         app:layout_constraintTop_toBottomOf="@id/description_tv" />
+
+    <ImageView
+        android:id="@+id/comment_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/outline_chat_24"
+        android:tint="@color/not_selected"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintEnd_toStartOf="@id/comment_label_tv"
+        app:layout_constraintTop_toBottomOf="@id/description_tv"/>
 
     <TextView
         android:id="@+id/comment_count"
@@ -95,12 +125,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
+        android:id="@+id/view"
         android:layout_width="350dp"
         android:layout_height="1dp"
         android:layout_margin="8dp"
+        android:background="@color/divider_color"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/description_tv"
         app:layout_constraintStart_toStartOf="@+id/description_tv"
-        app:layout_constraintTop_toBottomOf="@id/article_link"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/divider_color"/>
+        app:layout_constraintTop_toBottomOf="@id/article_link" />
 </android.support.constraint.ConstraintLayout>
