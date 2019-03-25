@@ -17,7 +17,10 @@ import com.example.code_foo_android_app.Model.Video;
 import com.example.code_foo_android_app.R;
 import com.example.code_foo_android_app.Utils.TimestampCalcUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
     private Context context;
@@ -49,11 +52,11 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
             final Video video = videos.get(i);
 
             String slug = video.getVideoMetadata().getSlug();
-            String url = context.getString(R.string.base_video_url) + slug;
+            String dateString = video.getVideoMetadata().getPublishDate();
+            String datePath = TimestampCalcUtil.convertStringToDate(dateString);
+            String url = context.getString(R.string.base_video_url) + datePath + slug;
 
             final Uri videoLink = Uri.parse(url);
-
-            String dateString = video.getVideoMetadata().getPublishDate();
 
             String timePassed = TimestampCalcUtil.calcTimestamp(dateString, viewHolder);
 

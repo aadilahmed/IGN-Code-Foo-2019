@@ -4,7 +4,9 @@ import android.support.v7.widget.RecyclerView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class TimestampCalcUtil {
@@ -42,5 +44,28 @@ public class TimestampCalcUtil {
         }
 
         return returnValue;
+    }
+
+    public static String convertStringToDate(String dateString) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss",
+                Locale.US);
+
+        Date contentDate = null;
+        try {
+            contentDate = dateFormat.parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(contentDate);
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH) + 1;
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        String date = Integer.toString(year) + "/" + Integer.toString(month) + "/" +
+                Integer.toString(day) + "/";
+
+        return date;
     }
 }
