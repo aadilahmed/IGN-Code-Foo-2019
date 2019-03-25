@@ -29,7 +29,6 @@ public class MainActivity extends FragmentActivity {
         tabLayout.setupWithViewPager(mPager);
     }
 
-
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {
             super(fm);
