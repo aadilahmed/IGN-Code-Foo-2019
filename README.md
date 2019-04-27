@@ -6,3 +6,6 @@ Application materials for IGN's Code Foo 9.
 * Gson
 * OkHTTP
 * Glide
+
+## Screenshots
+<img src="/Screenshots/Screenshot_1553312875.png" width="400">
